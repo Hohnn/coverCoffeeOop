@@ -26,21 +26,26 @@ class ProductController extends Controller
 
     public function showOrders($id)
     {
-        $contractController = new OrderController($this->db);
-        $orders = $contractController->getAllOrdersByProduct($id);
+        $orderController = new OrderController($this->db);
+        $orders = $orderController->getAllOrdersByProduct($id);
         $product = $this->getOneProduct($id);
         return $this->view('product.orders', compact('product', 'orders'));
     }
 
     public function showCover($id)
     {
-        $contractController = new OrderController($this->db);
-        $orders = $contractController->getAllOrdersByProduct($id);
+        $orderController = new OrderController($this->db);
+        $orders = $orderController->getAllOrdersByProduct($id);
         $product = $this->getOneProduct($id);
         $this->product = $product;
         $coverController = new CoverController();
         $cover = $coverController->algo($orders);
-        return $this->view('product.cover', compact('product', 'cover'));
+        $deltaByTrimestre = $coverController->getDeltaByTrimestre($orders);
+        $deltaStack = $coverController->getDeltaStack($orders);
+        $contractController = new ContractController($this->db);
+        $contracts = $contractController->getAllContractByProduct($id);
+        $contractCover = $coverController->getContractCover($contracts);
+        return $this->view('product.cover', compact('product', 'cover', 'deltaByTrimestre', 'deltaStack', 'contractCover'));
     }
 
     public function getOneProduct($id)
@@ -56,5 +61,7 @@ class ProductController extends Controller
         $req->execute();
         return $req->fetchAll();
     }
+
+    
 
 }

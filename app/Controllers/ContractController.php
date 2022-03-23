@@ -11,7 +11,7 @@ class ContractController extends Controller
         NATURAL JOIN product_type
         NATURAL JOIN `provider`
         WHERE id_product_type = :id
-        ORDER BY date_start_contract DESC");
+        ORDER BY date_start_contract ASC");
         $req->execute(['id' => $id]);
         $result = $req->fetchAll();
         return $this->updateQuantity($result);
