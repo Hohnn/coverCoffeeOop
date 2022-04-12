@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Controllers\ContractController;
 use App\Controllers\OrderController;
 use App\Controllers\CoverController;
+use App\Controllers\ProviderController;
 
 class ProductController extends Controller
 {
@@ -21,7 +22,11 @@ class ProductController extends Controller
         $contractController = new ContractController($this->db);
         $contracts = $contractController->getAllContractByProduct($id);
         $product = $this->getOneProduct($id);
-        return $this->view('product.show', compact('product', 'contracts'));
+        $products = $this->getAllProduct();
+        $providerController = new ProviderController($this->db);
+        $providers = $providerController->getAllProvider();
+
+        return $this->view('product.show', compact('product', 'contracts', 'products', 'providers'));
     }
 
     public function showOrders($id)
@@ -45,7 +50,7 @@ class ProductController extends Controller
         $contractController = new ContractController($this->db);
         $contracts = $contractController->getAllContractByProduct($id);
         $contractCover = $coverController->getContractCover($contracts);
-        return $this->view('product.cover', compact('product', 'cover', 'deltaByTrimestre', 'deltaStack', 'contractCover'));
+        return $this->view('product.cover', compact('product', 'cover', 'deltaByTrimestre', 'deltaStack', 'contractCover', 'coverController'));
     }
 
     public function getOneProduct($id)
@@ -57,7 +62,7 @@ class ProductController extends Controller
 
     public function getAllProduct()
     {
-        $req = $this->db->getPDO()->prepare('SELECT * FROM product_type');
+        $req = $this->db->getPDO()->prepare('SELECT * FROM product_type ORDER BY reference_product_type ASC');
         $req->execute();
         return $req->fetchAll();
     }

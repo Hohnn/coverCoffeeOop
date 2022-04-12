@@ -9,5 +9,10 @@ class HomeController extends Controller
         return $this->view('home.index');
     }
 
+    public function indexNoLogin()
+    {
+        header('Location: /login');
+    }
+
     
 }

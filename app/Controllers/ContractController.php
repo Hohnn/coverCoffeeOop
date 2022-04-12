@@ -26,7 +26,8 @@ class ContractController extends Controller
             foreach($orders as $order){
                 $quantity += $order->quantity_order;
             }
-            $contract->quantity_contract -= $quantity;
+            $contract->delivered =  $quantity;
+            $contract->solde = $contract->quantity_contract - $quantity;
         }
         return $allContracts;
     }

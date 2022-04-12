@@ -117,23 +117,23 @@ class CoverController
         $array = [];
         foreach ($cover as $key => $year) {
             $cover[$key]['totalByTrimestre'] = $this->sortByTrimestre($year['orders']);
-            
         }
         foreach($cover as $key => $year) {
             foreach ($year['totalByTrimestre'] as $key2 => $trimestre) {
-                if ($key - 1 >= 0) {
+                if ($key - 1 >= 0) { // pas pour la premiere annee
                     $trimestre = $cover[$key]['totalByTrimestre'][$key2]['total'];
                     $trimestreLastYear = $cover[$key - 1]['totalByTrimestre'][$key2]['total'] ?? 0;
                     if ($trimestreLastYear > 0) {
-                        $array[$key][] = $this->formatNum(number_format(($trimestre * 100 / $trimestreLastYear) - 100, 0, '.', ''));
+                        $array[$key][$key2] = $this->formatNum(number_format(($trimestre * 100 / ($trimestreLastYear == 0 ? 1 : $trimestreLastYear)) - 100, 0, '.', ''));
                     }  else {
-                        $array[$key][] = null;
+                        $array[$key][$key2] = null;
                     }
                 }
             }
-            !empty($array[$key]) ? $array[$key] = array_reverse($array[$key]) : null;
+            !empty($array[$key]) ? $array[$key] = array_reverse($array[$key], true) : null;
             
         }
+
         return $array;
     }
 
@@ -146,27 +146,27 @@ class CoverController
             
         }
         foreach($cover as $key => $year) {
-            foreach (array_reverse($year['totalByTrimestre']) as $key2 => $trimestre) {
+            foreach (array_reverse($year['totalByTrimestre'], true) as $key2 => $trimestre) {
                 if ($key - 1 >= 0) {
                     if($key2 > 0){
                         $trimestre = 0;
                         $trimestreLastYear = 0;
-                        for ($i=0; $i < $key2 + 1 ; $i++) { 
-                            $trimestre += $cover[$key]['totalByTrimestre'][$i + 1]['total'];
+                        for ($i=0; $i < $key2 ; $i++) { 
+                            $trimestre += $cover[$key]['totalByTrimestre'][$i + 1]['total'] ?? 0;
                             $trimestreLastYear += $cover[$key - 1]['totalByTrimestre'][$i + 1]['total'] ?? 0;
                         }
                         if ($trimestreLastYear > 0) {
-                            $array[$key][] = $this->formatNum(number_format(($trimestre * 100 / $trimestreLastYear) - 100, 0, '.', ''));
+                            $array[$key][$key2] = $this->formatNum(number_format(($trimestre * 100 / ($trimestreLastYear == 0 ? 1 : $trimestreLastYear)) - 100, 0, '.', ''));
                         } else {
-                            $array[$key][] = null;
+                            $array[$key][$key2] = null;
                         }
                     } else {
                         $trimestre = $cover[$key]['totalByTrimestre'][$key2 + 1]['total'];
                         $trimestreLastYear = $cover[$key - 1]['totalByTrimestre'][$key2 + 1]['total'] ?? 0;
                         if ($trimestreLastYear > 0) {
-                            $array[$key][] = $this->formatNum(number_format(($trimestre * 100 / $trimestreLastYear) - 100, 0, '.', ''));
+                            $array[$key][$key2] = $this->formatNum(number_format(($trimestre * 100 / ($trimestreLastYear == 0 ? 1 : $trimestreLastYear)) - 100, 0, '.', ''));
                         } else {
-                            $array[$key][] = null;
+                            $array[$key][$key2] = null;
                         }
                     }
                 }
@@ -186,7 +186,7 @@ class CoverController
         $array = [];
         
         foreach($contracts as $contract) {
-            if ($contract->quantity_contract != 0) {
+            if ($contract->solde > 0) {
                 $start = $this->getTrimestre($contract->DATE_START);
                 $startYear = substr($contract->DATE_START, 6, 4);
                 $end = $this->getTrimestre($contract->DATE_END);
@@ -200,7 +200,7 @@ class CoverController
                 if($startYear != $endYear){
                     $iEnd = 4;
                 }
-                
+
                 while ($a <= $contract->quantity_contract) {
                     for ($i=$iStart ; $i <= $iEnd ; $i++) { 
                         isset($array[$b][$i]) ? $array[$b][$i] += 1 : $array[$b][$i] = 1;
@@ -228,5 +228,16 @@ class CoverController
             }
         }
         return $array;
+    }
+
+    public static function deltaColor($delta)
+    {
+        if ($delta > 0) {
+            return 'text-success';
+        } elseif ($delta < 0) {
+            return 'text-danger';
+        } else {
+            return 'text-muted';
+        }
     }
 }
