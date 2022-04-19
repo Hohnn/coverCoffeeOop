@@ -26,7 +26,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="editContract" class="btn btn-outline-success me-auto" data-bs-dismiss="modal" data-bs-toggle="collapse" href="#collapseExample">Modifier</button>
+        <button type="button" id="editCont>ract" class="btn btn-outline-success me-auto" data-bs-dismiss="modal" data-bs-toggle="collapse" href="#collapseExample">Modifier</button>
         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
         <div>
             <input type="hidden" id="contractId" name="contractId" value="">
