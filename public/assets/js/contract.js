@@ -57,13 +57,11 @@ btnEditContract.addEventListener('click', function(event) {
     editContractTitle.innerText = 'Modifier le contrat';
     let contractIdUpdate = document.getElementById('contractIdUpdate');
     contractIdUpdate.value = contractId;
+    console.log(contractIdUpdate.value);
     modalContractId.value = contractId;
-    fetch(`../controllers/contract_controller.php?editContract=${contractId}`)
+    fetch(`../fetch/contract/${contractId}`)
         .then(response => response.json())
-        .then(async data => {
-            const json = await data
-            setInputValue(json)
-        })
+        .then( data => setInputValue(data))
 })
 
 function setInputValue(json) {

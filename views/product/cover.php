@@ -1,8 +1,15 @@
 
 <section>
     <div class="container-fluid px-1 px-md-2">
-    <h1>Cover <span><?= $params['product']->reference_product_type ?> <?= $params['product']->name_product_type ?></span></h1>
-
+        <div class="d-flex align-items-start">
+            <h1>Cover</h1>
+            <select class="form-select w-0 text-uppercase" name="forma" onchange="location.replace(`/product/${this.value}/cover`)" style="width: fit-content;">
+                <option value="">Sélectionnez un produit </option>
+                <?php foreach ($params['products'] as $product): ?>
+                <option class="text-uppercase" value="<?= $product->id_product_type ?>" <?= $product->id_product_type == $params['product']->id_product_type ? 'selected' : null ?>>  <?= $product->reference_product_type ?> - <?= $product->name_product_type ?></option>
+                <?php endforeach ?>
+            </select>
+        </div>
 <?php 
 require '../views/product-nav.php'; ?>
 

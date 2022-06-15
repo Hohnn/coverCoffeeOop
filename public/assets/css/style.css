@@ -1036,7 +1036,6 @@ main .topMembers .scroll .profil .desc span {
 }
 
 .panierProfil {
-  margin-left: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

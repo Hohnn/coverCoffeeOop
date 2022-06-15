@@ -144,7 +144,8 @@ require '../views/product-nav.php'; ?>
         <li class=""></li>
     </ul>
 <?php
-foreach($params['contracts'] as $contract){ ?>
+foreach($params['contracts'] as $contract):
+    if ($contract->solde > 0) : ?>
     <ul class="product-list" data-bs-toggle="modal" data-bs-target="#contractModal" data-id="<?= $contract->id_contract ?>" >
         <li class=""><?= $contract->reference_contract ?></li>
         <li class=""><?= $contract->DATE_START ?></li>
@@ -157,9 +158,33 @@ foreach($params['contracts'] as $contract){ ?>
         <li class=""><?= $contract->price_contract ?>€</li>
         <li class=""><i class="bi bi-three-dots-vertical"></i></li>
     </ul>
-<?php } ?>
+    <?php endif ?>
+<?php endforeach ?>
+<div class="d-flex justify-content-between mt-3">
+    <p><button class="btn btn-outline-light" type="button" data-bs-toggle="modal" data-bs-target="#contractDispoModal">Ajouter du dispo</button></p>
+    <p class=" ms-auto"><a id="toggleFinishContract" data-bs-toggle="collapse" href="#finishContract" role="button" class="btn btn-outline-light"><span class="bi bi-arrow-90deg-down"></span> Contrats épuisé</a></p>
+</div>
+<?php
+foreach($params['contracts'] as $contract):
+    if ($contract->solde < 1) : ?>
+    <ul class="product-list collapse" id="finishContract" data-bs-toggle="modal" data-bs-target="#contractModal" data-id="<?= $contract->id_contract ?>" >
+        <li class=""><?= $contract->reference_contract ?></li>
+        <li class=""><?= $contract->DATE_START ?></li>
+        <li class=""><?= $contract->DATE_END ?></li>
+        <li class=""><?= $contract->name_provider ?></li>
+        <li class=""><?= $contract->quantity_contract ?></li>
+        <li class=""><?= $contract->delivered ?></li>
+        <li class="stock"><?= $contract->solde ?></li>
+        <li class=" name"><?= $contract->name_contract ?></li>
+        <li class=""><?= $contract->price_contract ?>€</li>
+        <li class=""><i class="bi bi-three-dots-vertical"></i></li>
+    </ul>
+    <?php endif ?>
+<?php endforeach ?>
+
 </div>
 </section>
+
 
 
 

@@ -18,6 +18,8 @@ class Controller
     {
         ob_start();
         $path = str_replace('.', DIRECTORY_SEPARATOR, $path) . '.php';
+        $product = new ContractController($this->db);
+        $provider = new ProviderController($this->db);
         require VIEWS . '/nav/asideNav.php';
         require VIEWS . 'header.php';
         require VIEWS . $path;

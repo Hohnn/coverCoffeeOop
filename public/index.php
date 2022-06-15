@@ -23,11 +23,12 @@ $router->get('/product/:id/orders', 'App\Controllers\ProductController@showOrder
 $router->get('/product/:id/cover', 'App\Controllers\ProductController@showCover');
 $router->get('/login', 'App\Controllers\AuthController@login');
 
+$router->get('/fetch/contract/:id', 'App\Controllers\ContractController@fetchContractById');
+
 $router->post('/logout', 'App\Controllers\AuthController@logout');
-
 $router->post('/login', 'App\Controllers\AuthController@loginAuth');
-
-
+$router->post('/product/:id', 'App\Controllers\ContractController@postContract');
+/* $router->post('/product/:id/addToCart', 'App\Controllers\CartController@addToCart'); */
 
 $router->run();
 

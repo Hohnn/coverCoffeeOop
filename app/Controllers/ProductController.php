@@ -10,10 +10,12 @@ class ProductController extends Controller
 {
 
     public $product = null;
+    public $allProducts = null;
 
     public function index()
     {   
         $products = $this->getAllProduct();
+        $this->allProducts = $products;
         return $this->view('product.index', compact('products'));
     }
 
@@ -25,8 +27,9 @@ class ProductController extends Controller
         $products = $this->getAllProduct();
         $providerController = new ProviderController($this->db);
         $providers = $providerController->getAllProvider();
+        $dispoDate = $contractController->dispoDate();
 
-        return $this->view('product.show', compact('product', 'contracts', 'products', 'providers'));
+        return $this->view('product.show', compact('product', 'contracts', 'products', 'providers', 'dispoDate'));
     }
 
     public function showOrders($id)
@@ -50,7 +53,8 @@ class ProductController extends Controller
         $contractController = new ContractController($this->db);
         $contracts = $contractController->getAllContractByProduct($id);
         $contractCover = $coverController->getContractCover($contracts);
-        return $this->view('product.cover', compact('product', 'cover', 'deltaByTrimestre', 'deltaStack', 'contractCover', 'coverController'));
+        $this->allProducts ? $products = $this->allProducts : $products = $this->getAllProduct();
+        return $this->view('product.cover', compact('product', 'cover', 'deltaByTrimestre', 'deltaStack', 'contractCover', 'coverController', 'products'));
     }
 
     public function getOneProduct($id)
