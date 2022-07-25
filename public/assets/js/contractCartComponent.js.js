@@ -23,5 +23,6 @@ document.addEventListener("click", (evt) => {
     // This is a click outside.
     if (click2 >= 3) {
         cartCard2.classList.remove('open')
+        cartLogo2.firstElementChild.classList.remove('active')
     }
 });

@@ -241,13 +241,13 @@ class ContractController extends Controller
             $trimestre = 1;
         } elseif($month >= 4 && $month <= 6) {
             $trimestre = 2;
-        } elseif($month >= 7 && $month >= 9) {
+        } elseif($month >= 7 && $month <= 9) {
             $trimestre = 3;
         } elseif($month >= 10 && $month <= 12) {
             $trimestre = 4;
         }
 
-        return $trimestre = [
+        return [
             'date' => $date2->format('Y-m-d'),
             'trimestre' => $trimestre,
             'year' => $year

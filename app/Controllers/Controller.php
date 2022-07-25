@@ -21,7 +21,7 @@ class Controller
         $product = new ContractController($this->db);
         $provider = new ProviderController($this->db);
         require VIEWS . '/nav/asideNav.php';
-        require VIEWS . 'header.php';
+        require_once VIEWS . 'header.php';
         require VIEWS . $path;
         require VIEWS . 'footer.php';
         if($params){

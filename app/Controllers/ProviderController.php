@@ -38,4 +38,13 @@ class ProviderController extends Controller
         $req->execute();
         return $req->fetchAll();
     }
+
+    public function getProviderById($id)
+    {
+        $condition = "SELECT * FROM `provider` WHERE id_provider = ?";
+        $result = $this->db->getPDO()->prepare($condition);
+        $result->bindValue(1, $id, \PDO::PARAM_INT);
+        $result->execute();
+        return $result->fetch();
+    }
 }

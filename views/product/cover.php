@@ -77,13 +77,56 @@ require '../views/product-nav.php'; ?>
     <?php endforeach; ?>
     </tbody>
 </table>
+<div class="row">
+    <div class="col-2">
+        <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-light" id="btnAddContract">Add cover</button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#providerModal" class="btn bgYellow d-none" name="submitAddContract" id="submitAddContract">Valider</button>
+            <input type="hidden" name="productId" value="<?= $params['product']->id_product_type ?>">
+        </div>
+    </div>
+    <div class="col-10">
+        <div class="d-flex  mb-2" id="rowCover">
+            <div class="input-group me-4">
+                <span class="input-group-text">Année</span>
+                <input class="form-control" type="text" disabled value="2022" min=0>
+            </div>
+            <div class="input-group me-3">
+                <span class="input-group-text">T1</span>
+                <input class="form-control" type="number" min=0>
+            </div>
+            <div class="input-group me-3">
+                <span class="input-group-text">T2</span>
+                <input class="form-control" type="number" min=0>
+            </div>
+            <div class="input-group me-3">
+                <span class="input-group-text">T3</span>
+                <input class="form-control" type="number" min=0>
+            </div>
+            <div class="input-group me-3">
+                <span class="input-group-text">T4</span>
+                <input class="form-control" type="number" min=0>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text">Totale</span>
+                <input class="form-control" type="text" disabled value="2022" min=0>
+            </div>
+        </div>
+        <div class="plus">
+            <button class="btn btn-outline-light p-1 px-3" id="addRowCover"> + </button>
+        </div>
+    </div>
+</div>
+
 
     </div>  
 </section>
 
-<?php 
+<script defer src="/public/assets/js/cover.js"></script>
+
+<!-- <?php 
 echo "<pre>";
-/* print_r($params['deltaStack']); */
+print_r($params);
 echo "</pre>";
 
-?>
+?> -->

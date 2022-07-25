@@ -1,11 +1,12 @@
-<main class="col " data-bs-spy="scroll" data-bs-target="#navSide" data-bs-offset="0" tabindex="0">
+<main class="col">
     <header>
         <div class="panierProfil contractPanier">
             <div class="cart" id="cart2">
                 <i class="bi bi-card-heading fs-3"></i>
                 <div
-                    class="item-number <?= isset($_SESSION['contract']) && count($_SESSION['contract']) == '0' ? "d-none" : "" ?>">
-                    <?= isset($_SESSION['contract']) ? count($_SESSION['contract']) : '0' ?></div>
+                    class="item-number <?= !isset($_SESSION['contract']) || count($_SESSION['contract']) == '0' ? "d-none" : "" ?>">
+                    <?= isset($_SESSION['contract']) ? count($_SESSION['contract']) : null ?>
+                </div>
             </div>
         </div>
 
@@ -13,7 +14,7 @@
             <div class="title"><strong>Récapitulatif</strong></div>
             <div class="card-content">
                 <?php
-if (isset($_SESSION['contract']) && empty($_SESSION['contract'])) { ?>
+if (!isset($_SESSION['contract']) || empty($_SESSION['contract'])) { ?>
                 <section>Vide</section>
                 <?php }
 if(isset($_SESSION['contract']) && !empty($_SESSION['contract'])) {
@@ -43,8 +44,8 @@ if(isset($_SESSION['contract']) && !empty($_SESSION['contract'])) {
             <div class="cart" id="cart">
                 <i class="bi bi-cart2 fs-3"></i>
                 <div
-                    class="item-number <?= isset($_SESSION['order']) && count($_SESSION['order']) == '0' ? "d-none" : "" ?>">
-                    <?= count($_SESSION['order']) ?></div>
+                    class="item-number <?= !isset($_SESSION['order']) || count($_SESSION['order']) == '0' ? "d-none" : "" ?>">
+                    <?= isset($_SESSION['order']) ? count($_SESSION['order']) : null  ?></div>
             </div>
         </div>
 
@@ -52,25 +53,25 @@ if(isset($_SESSION['contract']) && !empty($_SESSION['contract'])) {
             <div class="title"><strong>Commande</strong></div>
             <div class="card-content">
                 <?php
-if (isset($_SESSION['order']) && empty($_SESSION['order'])) { ?>
+if ( !isset($_SESSION['order']) || empty($_SESSION['order'])) { ?>
                 <section>Vide</section>
                 <?php } elseif (isset($_SESSION['order'])){
             foreach ($_SESSION['order'] as $key => $value) { 
             $contractInfo = $product->getContractById($value['contractId']); ?>
-                <a href="/views/contract.php?ref=<?= $contractInfo->reference_product_type ?>">
+                <a href="<?= BASEURL ?>product/<?= $contractInfo->id_product_type ?>">
                     <section>
                         <div class="desc">
                             <div class="desc-title"><?= $contractInfo->name_contract ?></div>
                             <div class="price"><span><?= $value['quantity'] ?></span> Sacs</div>
                         </div>
-                        <form action="" method="post" class="deleteForm">
+                        <form action="<?= BASEURL ?>order/delete/<?= $key ?>" method="post" class="deleteForm">
                             <button type="submit" name="submitDeleteOrder"><i class="bi bi-x-circle"></i></button>
                             <input type="hidden" name="key" value="<?= $key ?>">
                         </form>
                     </section>
                 </a>
                 <?php } } ?>
-                <a href="/views/cart.php" type="button" class="cartBtn text-center">Voir les commandes</a>
+                <a href="/order/cart" type="button" class="cartBtn text-center">Voir les commandes</a>
             </div>
         </div>
 
@@ -97,4 +98,4 @@ if (isset($_SESSION['order']) && empty($_SESSION['order'])) { ?>
     </header>
 
     <script defer src="/public/assets/js/cartComponent.js"></script>
-    <script defer src="../assets/js/contractCartComponent.js"></script>
+    <script defer src="/public/assets/js/contractCartComponent.js"></script>
