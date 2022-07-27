@@ -51,8 +51,9 @@ class OrderController extends Controller
         $totalPrice = 0;
         $contract = new ContractController($this->db);
         $provider = new ProviderController($this->db);
-        foreach ($_SESSION['order'] as $value) {
+        foreach ($_SESSION['order'] as $sessionKey => $value) {
             $contractInfo3 = $contract->getContractById($value['contractId']);
+            $value['sessionKey'] = $sessionKey;
             $providerUnique[$contractInfo3->id_provider][] = $value;
         }
         foreach ($providerUnique as $keyP => $value) { 
@@ -61,19 +62,22 @@ class OrderController extends Controller
             $providerTotal[$keyP] = (object) [
                 'provider' => $providerInfo->name_provider,
                 'quantity' => 0,
+                'totalPrice' => 0,
+                'orders' => []
             ];
             foreach ($value as $key => $value) {
                 $contractInfo = $contract->getContractById($value['contractId']);
+                $value['contractInfo'] = $contractInfo;
                 if ($keyP == $contractInfo->id_provider) {
                     $price = number_format($contractInfo->price_contract, 2, '.', '');
                     $delivred = $this->getOrderByContract($contractInfo->id_contract);
                     $solde = $delivred ? $contractInfo->quantity_contract - $delivred->quantity_order : $contractInfo->quantity_contract;
+                    $value['solde'] = $solde;
                     $totalPrice += $price * $value['quantity'];
                 }
                 $providerTotal[$keyP]->quantity += $value['quantity'];
-                $providerTotal[$keyP]->price = $price;
-                $providerTotal[$keyP]->solde = $solde;
-                $providerTotal[$keyP]->totalPrice = $totalPrice;
+                $providerTotal[$keyP]->totalPrice += $price * $value['quantity'];
+                $providerTotal[$keyP]->orders[] = $value;
             }
         }
         return $providerTotal;
@@ -84,25 +88,16 @@ class OrderController extends Controller
         $providerTotal = [];
         $totalPrice = 0;
         $contract = new ContractController($this->db);
-        $provider = new ProviderController($this->db);
-        foreach ($_SESSION['order'] as $keyP => $order) { 
-            
-            $providerTotal[$keyP] = (object) [
-                'quantity' => 0,
-            ];
-            foreach ($order as $key => $value) {
-                $contractInfo = $contract->getContractById($value['contractId']);
-                if ($keyP == $contractInfo->id_provider) {
-                    $price = number_format($contractInfo->price_contract, 2, '.', '');
-                    $delivred = $this->getOrderByContract($contractInfo->id_contract);
-                    $solde = $delivred ? $contractInfo->quantity_contract - $delivred->quantity_order : $contractInfo->quantity_contract;
-                    $totalPrice += $price * $value['quantity'];
-                }
-                $providerTotal[$keyP]->quantity += $value['quantity'];
-                $providerTotal[$keyP]->price = $price;
-                $providerTotal[$keyP]->solde = $solde;
-                $providerTotal[$keyP]->totalPrice = $totalPrice;
-            }
+        $providerTotal = (object) [
+            'quantity' => 0,
+            'totalPrice' => 0,
+        ];
+        foreach ($_SESSION['order'] as $key => $value) {
+            $contractInfo = $contract->getContractById($value['contractId']);
+            $price = number_format($contractInfo->price_contract, 2, '.', '');
+            $totalPrice += $price * $value['quantity'];
+            $providerTotal->quantity += $value['quantity'];
+            $providerTotal->totalPrice = $totalPrice;
         }
         return $providerTotal;
     }
@@ -119,4 +114,19 @@ class OrderController extends Controller
         return $result->fetch();
     }
 
+    public function updateCart()
+    {
+        $orders = $_SESSION['order'];
+        $orders = $this->updateQuantity($orders);
+        $_SESSION['order'] = $orders;
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+
+    public function updateQuantity($orders)
+    {
+        foreach ($orders as $key => $value) {
+            $orders[$_POST['itemNumber']]['quantity'] = $_POST['updateOrderQuantity'];
+        }
+        return $orders;
+    }
 }

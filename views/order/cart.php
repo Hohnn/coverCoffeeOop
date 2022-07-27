@@ -1,62 +1,48 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/product.css">
-    <title>Cover coffee</title>
-</head>
 <section class="team" id="teamScroll">
-    <h1 class="text-uppercase">Commande</span></h1>
-    <div class="container-fluid cardWrapper mt-3">
+    <div class="container-fluid ">
+        <h1 class="text-uppercase">Commande</span></h1>
+        <div class="cardWrapper mt-3">
         <div class="productContainer">
             <div class="">
                 <?php if (isset($_SESSION['order']) && !empty($_SESSION['order'])) { 
-                    var_dump($this->getUniqueProvider());    
 
             foreach ($this->getUniqueProvider() as $keyP => $value) { ?>
-                <div class=" mt-3">
-                    <h2 class="text-uppercase fs-4"><?= $value->provider ?></h2>
+           
+                <div class=" mt-4">
+                    <h2 class="text-uppercase fs-4 d-flex w-100"><?= $value->provider ?> <span class="ms-auto text-lowercase fs-5">Qté: <?= $value->quantity ?> </span> <span class="ms-3 text-lowercase fs-5">Total: <?= $value->totalPrice ?> €</span></h2>
                     <?php
-                        foreach ($this->getTotalProvider() as $key => $value) { ?>
+                        foreach ($value->orders as $key => $value) { ?>
+                        
                     <div class="cart-content myCard p-3">
-                        <a href="/views/contract.php?ref=<?= $contractInfo['reference_product_type'] ?>">
+                        <a href="<?= BASEURL ?>product/<?= $value['contractInfo']->id_product_type ?>">
                             <section class="p-0">
                                 <div class="desc">
                                     <div class="desc-title">
-                                        <h3 class="nameContract"> <?= $contractInfo['name_contract'] ?></h3>
-                                        <div class="price">Prix : <span><?= $price ?> €</span></div>
+                                        <h3 class="nameContract"> <?= $value['contractInfo']->name_contract ?></h3>
+                                        <div class="price">Prix : <span><?= $value['contractInfo']->price_contract ?> €</span></div>
                                     </div>
-                                    <div class="provider">
+                                    <div class="provider flex-wrap">
                                         <p class="nameProvider"> Fournisseur :
-                                            <span><?= $contractInfo['name_provider'] ?></span></p>
+                                            <span><?= $value['contractInfo']->name_provider ?></span></p>
                                         <p class="refContract"> Contrat :
-                                            <span><?= $contractInfo['reference_contract'] ?></span></p>
-                                    </div>
-                                    <div class="product">
-                                        <p class="refProduct">Produit :
-                                            <span><?= $contractInfo['name_product_type'] ?></span></p>
+                                            <span><?= $value['contractInfo']->reference_contract ?></span></p>
+                                            <p class="refProduct">Produit :
+                                            <span><?= $value['contractInfo']->name_product_type ?></span></p>
                                         <p class="refProduct"> Référence :
-                                            <span><?= $contractInfo['reference_product_type'] ?></span></p>
+                                            <span><?= $value['contractInfo']->reference_product_type ?></span></p>
                                     </div>
                                     <footer>
                                         <div class="selectCart">
                                             Quantité :
-                                            <form class="numberOrderSelect" action="" method="post">
-                                                <input type="hidden" name="itemNumber" value="<?= $key ?>">
+                                            <form class="numberOrderSelect" method="post">
+                                                <input type="hidden" name="itemNumber" value="<?= $value['sessionKey'] ?>">
                                                 <?php if (isset($value['type']) && $value['type'] == 'dispo') { ?>
                                                 <input class="form-control" max="999" type="number"
                                                     name="updateOrderQuantity" min="1"
                                                     value="<?= $value['quantity'] ?>">
                                                 <?php } else { ?>
                                                 <select name="updateOrderQuantity" class="form-select">
-                                                    <?php for ($i=1; $i <= $solde ; $i++) { ?>
+                                                    <?php for ($i=1; $i <= $value['solde']  ; $i++) { ?>
                                                     <option value="<?= $i ?>"
                                                         <?= $value['quantity'] == $i ? 'selected' : '' ?>><?= $i ?>
                                                     </option>
@@ -77,31 +63,30 @@
                             </section>
                         </a>
                     </div>
-                    <?php } } } ?>
-
-                </div>
-                 } else {
+                    <?php } } } else {
   echo '<div class="myCard">Aucune commande en cours</div>';
 } ?>
 
+
+                </div>
             </div>
         </div>
-  <!--       <div class="totalContainer">
+        </div>
+        <div class="totalContainer">
             <div class="p-3">
-                <h4><span>Total :</span> <?= $totalPrice ?> €</h4>
+                <h4><span>Total</span></h4>
                 <hr>
-                <?php foreach ($providerTotal as $key => $value) { ?>
-                <p><?= $value['provider'] ?> : <span class="text-lowercase"> <?= $value['quantity'] ?>
-                        <?= $value['quantity'] > 1 ? 'sacs' : 'sac' ?></span></p>
-                <?php }
-                            ?>
+                <ul class="m-0 fs-5 fw-light">
+                    <li>Prix : <span class="text-white"> <?= $this->getTotalProvider()->totalPrice ?> €</span></li>
+                    <li>Quantité : <span class="text-lowercase text-white"> <?= $this->getTotalProvider()->quantity ?>
+                        <?= $this->getTotalProvider()->quantity > 1 ? 'sacs' : 'sac' ?></span></li>
+                </ul>
                 <form class="d-flex" target="_blank" method="POST"
                     onsubmit="javascript: setTimeout(function(){window.location.href = window.location.href;}, 2000);return true;">
-                    <button type="submit" class="btn btn-sm bgYellow mt-3 w-100" name="validation">Valider la
-                        commande</button>
+                    <button type="submit" class="btn btn-sm bgYellow mt-3 w-100" name="validation">Valider la commande</button>
                 </form>
             </div>
-        </div> -->
+        </div>
     </div>
 </section>
 </main>
@@ -217,8 +202,7 @@
     integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async>
 </script>
 <!-- page -->
-<script src="../assets/js/comp.js"></script>
-<script src="../assets/js/cart.js"></script>
+<script src="../public/assets/js/cart.js"></script>
 <?php if(isset($success)){ ?>
 <script>
     let myToast = new bootstrap.Toast(document.getElementById('liveToast'))
@@ -230,6 +214,3 @@
     window.open('contractCart.php', '_blank');
 </script>
 <?php  }  */?>
-</body>
-
-</html>

@@ -22,6 +22,11 @@ class Router
         $this->routes['POST'][] = new Route($path, $action);
     }
 
+    public function patch(string $path, string $action)
+    {
+        $this->routes['PATCH'][] = new Route($path, $action);
+    }
+
     public function redirect(string $url)
     {
         header("Location: $url");

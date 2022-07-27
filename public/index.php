@@ -33,5 +33,8 @@ $router->post('/product/:id', 'App\Controllers\ContractController@postContract')
 $router->post('/order/delete/:id', 'App\Controllers\OrderController@deleteOrder');
 /* $router->post('/product/:id/addToCart', 'App\Controllers\CartController@addToCart'); */
 
+$router->post('/order/cart', 'App\Controllers\OrderController@updateCart');
+
+
 $router->run();
 
