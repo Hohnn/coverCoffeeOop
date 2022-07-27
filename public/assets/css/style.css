@@ -1,31 +1,42 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
-/* $yellow: #fca311; */
-/* $yellow: RGB(106, 247, 151); */
+/* $grey: rgb(179, 179, 179);
+$yellow: #fca311;
+$yellow: RGB(106, 247, 151);
+$yellow: #B3C724;
+$dark: RGB(28, 29, 28);
+$dark_grey: rgb(43, 43, 43);
+$semi_dark: #222527;
+$card: hsl(204, 10%, 18%);
+$twitch: #9147FF;
+$youtube: #ff2e2e;
+$hover-black: rgba(0, 0, 0, 0.1); */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,600;0,700;1,600;1,700&display=swap");
 body {
-  color: #b3b3b3;
-  font-family: 'Roboto', sans-serif;
+  color: #5e5f5e;
+  font-family: "Nunito", sans-serif;
   font-weight: 500;
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
-a {
-  text-decoration: none;
-  color: #b3b3b3;
-}
-
-a:hover {
-  color: #B3C724;
-}
-
 aside {
-  max-width: 300px !important;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#292f32), to(#14171a));
-  background-image: linear-gradient(#292f32, #14171a);
+  max-width: 250px !important;
+  background: -webkit-gradient(linear, left top, left bottom, from(#292f32), to(#14171a));
+  background: linear-gradient(#292f32, #14171a);
   min-height: 100vh;
   border-right: 1px solid #464646;
   position: relative;
   z-index: 100;
+}
+
+aside a {
+  text-decoration: none;
+  color: #f1f1f0;
+}
+
+aside a:hover {
+  color: #35766b;
 }
 
 aside .stick {
@@ -36,10 +47,11 @@ aside .stick {
 }
 
 aside .brand {
+  font-family: "Raleway", sans-serif;
   font-size: 2em;
   font-weight: bold;
-  color: #B3C724;
-  padding: 1em;
+  color: #35766b;
+  padding: 0.5em;
 }
 
 aside .brand img {
@@ -65,10 +77,10 @@ aside nav {
 aside nav .pages {
   background-color: transparent;
   padding: 0.7em 1em !important;
-  margin: 0.1rem 0.5em;
+  margin: 0rem 0.5em;
   -webkit-transition: 0.2s;
   transition: 0.2s;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: bold;
   position: relative;
 }
@@ -76,7 +88,7 @@ aside nav .pages {
 aside nav .pages div {
   font-weight: normal;
   letter-spacing: 1px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 aside nav .pages div::first-letter {
@@ -85,7 +97,7 @@ aside nav .pages div::first-letter {
 
 aside nav .pages:hover {
   background-color: rgba(0, 0, 0, 0.1);
-  border-color: #B3C724;
+  border-color: #35766b;
 }
 
 aside nav .active {
@@ -93,7 +105,7 @@ aside nav .active {
 }
 
 aside nav .active i {
-  color: #B3C724;
+  color: #35766b;
 }
 
 aside nav .active::before {
@@ -103,7 +115,7 @@ aside nav .active::before {
   left: 0;
   width: 2px;
   height: 100%;
-  background-color: #B3C724;
+  background-color: #35766b;
 }
 
 aside nav .plusPhone {
@@ -143,11 +155,19 @@ aside nav .profilMenu2 button:hover {
 main {
   width: 100%;
   isolation: isolate;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#202427), to(#14171a));
-  background-image: linear-gradient(#202427, #14171a);
+  background: #fefffe;
   position: relative;
   background-attachment: scroll;
   min-height: 100vh;
+}
+
+main a {
+  text-decoration: none;
+  color: #4a4b4a;
+}
+
+main a:hover {
+  color: #35766b;
 }
 
 main > header {
@@ -219,11 +239,11 @@ main > header input[type="search"]:hover, main > header input[type="search"]:foc
 }
 
 main > header > button, main > header > a {
-  background-color: #36393b;
+  background: #f1f1f0;
   border: none;
   border-radius: 1em;
   font-size: 0.9em;
-  color: #b3b3b3;
+  color: #5e5f5e;
   padding: 0.4em 0.8em;
   margin: 0 1em;
   -webkit-transition: 0.25s ease-out;
@@ -231,8 +251,8 @@ main > header > button, main > header > a {
 }
 
 main > header > button:hover, main > header > a:hover {
-  background-color: transparent;
-  color: #B3C724;
+  background: #292f32;
+  color: #35766b;
 }
 
 main > header .focused {
@@ -250,7 +270,7 @@ main > header .userInfos {
 
 main > header .userInfos .userName {
   background-color: unset;
-  color: white;
+  color: #35766b;
   margin-right: 0;
 }
 
@@ -262,7 +282,7 @@ main > header .userInfos .profilLogo {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 2px solid #B3C724;
+  border: 2px solid #35766b;
   -o-object-fit: cover;
      object-fit: cover;
   margin-left: 1rem;
@@ -275,15 +295,13 @@ main section {
 
 main section h1 {
   font-weight: bold;
-  color: white;
   padding: 0 0.7em 0 0;
-  color: #b3b3b3;
   text-transform: uppercase;
   font-size: 2rem;
 }
 
 main section h1::first-letter {
-  color: #B3C724;
+  color: #35766b;
 }
 
 main section h1 span {
@@ -337,7 +355,7 @@ main .actu .card .desc .sujet {
 
 main .actu .card .desc a {
   border: none;
-  background-color: #B3C724;
+  background-color: #35766b;
   padding: 0.5em 2.5em;
   color: white;
   border-radius: 5px;
@@ -429,7 +447,7 @@ main .twitch nav ul li {
 }
 
 main .twitch nav ul .active {
-  border-color: #B3C724;
+  border-color: #35766b;
 }
 
 main .twitch nav ul .active a {
@@ -500,7 +518,7 @@ main .twitch .scroll::-webkit-scrollbar-thumb {
 }
 
 main .twitch .scroll::-webkit-scrollbar-thumb:hover {
-  background: #B3C724;
+  background: #35766b;
 }
 
 main .twitch .scroll::-webkit-scrollbar-track {
@@ -742,25 +760,25 @@ main .topMembers .scroll .profil .desc span {
 }
 
 .bgYellow {
-  background-color: #B3C724 !important;
-  border-color: #B3C724;
+  background-color: #35766b !important;
+  border-color: #35766b;
   color: black !important;
 }
 
 .bgYellow:hover {
-  border-color: #B3C724;
-  -webkit-box-shadow: 0 0px 5px 1px #B3C724;
-          box-shadow: 0 0px 5px 1px #B3C724;
+  border-color: #35766b;
+  -webkit-box-shadow: 0 0px 5px 1px #35766b;
+          box-shadow: 0 0px 5px 1px #35766b;
 }
 
 .bgYellowOutline {
   background-color: transparent !important;
-  border-color: #B3C724;
+  border-color: #35766b;
 }
 
 .bgYellowOutline:hover {
-  border-color: #B3C724;
-  color: #B3C724;
+  border-color: #35766b;
+  color: #35766b;
 }
 
 .border_red {
@@ -768,7 +786,7 @@ main .topMembers .scroll .profil .desc span {
 }
 
 .border_yellow {
-  border: 2px solid #B3C724;
+  border: 2px solid #35766b;
 }
 
 #plusArticle {
@@ -776,7 +794,7 @@ main .topMembers .scroll .profil .desc span {
 }
 
 #plusArticle:hover {
-  color: #B3C724;
+  color: #35766b;
 }
 
 .plusSug {
@@ -801,9 +819,9 @@ main .topMembers .scroll .profil .desc span {
 }
 
 #carousel .carousel-indicators .active {
-  border: 1px solid #B3C724;
-  -webkit-box-shadow: 0 0 10px #B3C724;
-          box-shadow: 0 0 10px #B3C724;
+  border: 1px solid #35766b;
+  -webkit-box-shadow: 0 0 10px #35766b;
+          box-shadow: 0 0 10px #35766b;
 }
 
 #carousel .carousel-indicators button {
@@ -1076,7 +1094,7 @@ main .topMembers .scroll .profil .desc span {
   position: absolute;
   top: 0;
   right: 0;
-  background-color: orange;
+  background-color: #35766b;
   font-size: 0.8rem;
   font-weight: bold;
   color: white;
@@ -1405,7 +1423,7 @@ tbody tr td input {
 }
 
 .firstMonth {
-  border-top: 0.5rem solid #373b3e !important;
+  border-top: 0.5rem solid #e6e9eb !important;
 }
 
 h2 {
@@ -1415,7 +1433,7 @@ h2 {
 }
 
 h2.active {
-  color: white;
+  color: #35766b;
   position: relative;
 }
 
@@ -1424,7 +1442,7 @@ h2.active::before {
   height: 1px;
   width: 80%;
   position: absolute;
-  background-color: #B3C724;
+  background-color: #35766b;
   bottom: -7px;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -1448,7 +1466,7 @@ h2.active::before {
 .searchMember input {
   width: 150px;
   border-radius: 3em;
-  border: 1px solid #B3C724;
+  border: 1px solid #35766b;
   background-color: transparent;
   padding: 0.4em 2em;
   font-size: 0.8em;
@@ -1557,16 +1575,16 @@ h2.active::before {
 }
 
 .sub-nav ul li .active {
-  color: white;
+  color: #35766b;
   position: relative;
 }
 
 .sub-nav ul li .active::before {
   content: '';
-  height: 1px;
+  height: 3px;
   width: 100%;
   position: absolute;
-  background-color: #B3C724;
+  background-color: #35766b;
   bottom: -7px;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -1575,4 +1593,72 @@ h2.active::before {
 
 th {
   font-weight: normal;
+}
+
+.product-list {
+  background-color: #f1f1f0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 120px 120px 120px 120px 50px 50px 50px 1fr 80px 30px;
+      grid-template-columns: 120px 120px 120px 120px 50px 50px 50px 1fr 80px 30px;
+  border-radius: 0.5rem;
+  border: 1px solid #e7e7e72e;
+  padding: 0;
+  margin: 0.5rem 0;
+  cursor: pointer;
+}
+
+.header {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 120px 120px 120px 120px 50px 50px 50px 1fr 80px 30px;
+      grid-template-columns: 120px 120px 120px 120px 50px 50px 50px 1fr 80px 30px;
+  border-radius: 0.5rem;
+  padding: 0;
+  margin: 0.5rem 0;
+  font-weight: lighter;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.product-list:hover {
+  background-color: #2c3235;
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+.product-list li, .header li {
+  list-style: none;
+  padding: 10px;
+  font-weight: normal;
+}
+
+.name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.myCustomBtn-outline {
+  color: #35766b;
+  border-color: #35766b;
+}
+
+.myCustomBtn-outline:active, .myCustomBtn-outline:focus, .myCustomBtn-outline:hover {
+  color: #fefffe;
+  border-color: #35766b;
+  background-color: #35766b;
+}
+
+.myCustomBtn {
+  color: #fefffe;
+  border-color: #35766b;
+  background-color: #35766b;
+}
+
+.myCustomBtn:active, .myCustomBtn:focus, .myCustomBtn:hover {
+  color: #35766b;
+  border-color: #35766b;
+  background-color: transparent;
 }

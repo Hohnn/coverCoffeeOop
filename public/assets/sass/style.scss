@@ -5,39 +5,41 @@
 
 
 body {
-    color: $grey;
-    font-family: 'Roboto', sans-serif;
+    color: $primary_font_color;
+    font-family: $primary-font;
     font-weight: 500;
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
 
-a {
-    text-decoration: none;
-    color: rgb(179, 179, 179);
-    &:hover {
-        color: $yellow;
-    }
-}
+
 
 
 aside {
-    max-width: 300px !important;
-    background-image: linear-gradient(hsl(204, 10%, 18%), hsl(210, 13%, 9%));
+    max-width: 250px !important;
+    background: $aside;
     min-height: 100vh;
     border-right: 1px solid rgb(70, 70, 70);
     position: relative;
     z-index: 100;
+    a {
+        text-decoration: none;
+        color: $soft_grey;
+        &:hover {
+            color: $yellow;
+        }
+    }
     .stick {
         position: sticky;
         top: 0px;
         height: 100vh;
     }
     .brand {
+        font-family: $secondary-font;
         font-size: 2em;
         font-weight: bold;
         color: $yellow;
-        padding: 1em ;
+        padding: 0.5em ;
         img {
             width: 50px;
         }
@@ -53,15 +55,15 @@ aside {
         .pages {
             background-color: transparent;
             padding:0.7em 1em !important;
-            margin:0.1rem 0.5em;
+            margin:0rem 0.5em;
             transition: 0.2s;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: bold;
             position: relative;
             div {
                 font-weight: normal;
                 letter-spacing: 1px;
-                font-size: 1.1rem;
+                font-size: 1.2rem;
                 &::first-letter {
                     text-transform: uppercase;
                 }
@@ -116,10 +118,17 @@ aside {
 main {
     width: 100%;
     isolation: isolate;
-    background-image: linear-gradient(hsl(204, 10%, 14%), hsl(210, 13%, 9%));
+    background: $main;
     position: relative;
     background-attachment: scroll;
     min-height: 100vh;
+    a {
+        text-decoration: none;
+        color: $darken;
+        &:hover {
+            color: $yellow;
+        }
+    }
     & > header {
         padding: 1em;
         display: flex;
@@ -160,16 +169,16 @@ main {
         } */
         
         & > button,& > a {
-            background-color: #36393b;
+            background: $soft_grey;
             border: none;
             border-radius: 1em;
             font-size: 0.9em;
-            color: rgb(179, 179, 179);
+            color: $dark;
             padding: 0.4em 0.8em;
             margin: 0 1em;
             transition: 0.25s ease-out;
             &:hover {
-                background-color: transparent;
+                background: $card;
                 color: $yellow;
             }
         }
@@ -202,7 +211,7 @@ main {
             display: flex;
             .userName {
                 background-color: unset;
-                color: white;
+                color: $green;
                 margin-right: 0;
             }
             .role {
@@ -224,9 +233,7 @@ main {
         position: relative;
         h1 {
             font-weight: bold;
-            color: white;
             padding: 0 0.7em 0 0;
-            color: $grey;
             text-transform: uppercase;
             font-size: 2rem;
             &::first-letter{
@@ -892,7 +899,7 @@ main {
             position: absolute;
             top: 0;
             right: 0;
-            background-color: orange;
+            background-color: $green;
             font-size: 0.8rem;
             font-weight: bold;
             color: white;
@@ -1139,13 +1146,13 @@ tbody {
 }
 
 .firstMonth {
-    border-top: 0.5rem solid #373b3e !important;
+    border-top: 0.5rem solid #e6e9eb !important;
 }
 
 h2 {
     width: fit-content;
     &.active {
-        color: white;
+        color: $green;
         position: relative;
         &::before {
             content: '';
@@ -1247,11 +1254,11 @@ h2 {
                 text-transform: uppercase;
             }
             .active {
-                color: white;
+                color: $green;
                 position: relative;
                 &::before {
                     content: '';
-                    height: 1px;
+                    height: 3px;
                     width: 100%;
                     position: absolute;
                     background-color: $yellow;
@@ -1266,4 +1273,67 @@ h2 {
 
 th {
     font-weight: normal;
+}
+
+.product-list {
+    background-color: $soft_grey;
+    display: grid;
+    grid-template-columns: 120px 120px 120px 120px 50px 50px 50px 1fr 80px 30px;
+    border-radius: 0.5rem;
+    border: 1px solid #e7e7e72e;
+    padding: 0;
+    margin: 0.5rem 0;
+    cursor: pointer;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 120px 120px 120px 120px 50px 50px 50px 1fr 80px 30px;
+    border-radius: 0.5rem;
+    padding: 0;
+    margin: 0.5rem 0;
+    font-weight: lighter;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.product-list:hover {
+    background-color: #2c3235;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+.product-list li, .header li  {
+    list-style: none;
+    padding: 10px;
+    font-weight: normal;
+}
+.name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+}
+
+.myCustomBtn-outline {
+    color: $green;
+    border-color: $green;
+}
+
+.myCustomBtn-outline:active, .myCustomBtn-outline:focus, .myCustomBtn-outline:hover {
+    color: $white;
+    border-color: $green;
+    background-color: $green;
+}
+
+.myCustomBtn {
+    color: $white;
+    border-color: $green;
+    background-color: $green;
+}
+
+.myCustomBtn:active, .myCustomBtn:focus, .myCustomBtn:hover {
+    color: $green;
+    border-color: $green;
+    background-color: transparent;
 }

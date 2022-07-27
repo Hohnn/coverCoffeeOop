@@ -1,0 +1,27 @@
+#exchangeCurrency {
+    h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5em;
+    }
+    span {
+        color: white;
+        text-transform: uppercase;
+    }
+    #value {
+        font-size: 1.5rem;
+    }
+    #currency {
+        font-size: 0.8rem;
+        margin-inline: 0.5em;
+    }
+    #parcent {
+        font-size: 1.2rem;
+    }
+    .desc {
+        font-size: 0.9rem;
+        span {
+            font-weight: lighter;
+        }
+        
+    }
+}

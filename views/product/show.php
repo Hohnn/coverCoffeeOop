@@ -8,11 +8,11 @@
                 <option class="text-uppercase" value="<?= $product->id_product_type ?>" <?= $_SERVER['REQUEST_URI'] == '/product/' . $product->id_product_type ? 'selected' : null ?>>  <?= $product->reference_product_type ?> - <?= $product->name_product_type ?></option>
             <?php endforeach ?>
             </select>
-            <p class="ms-3"><a id="toggleAddContractBtn" data-bs-toggle="collapse" href="#collapseExample" role="button" class="btn btn-outline-light">Ajouer un contrat</a></p>
+            <p class="ms-3"><a id="toggleAddContractBtn" data-bs-toggle="collapse" href="#collapseExample" role="button" class="btn myCustomBtn-outline">Ajouer un contrat</a></p>
         </div>
 
         <div class="collapse" id="collapseExample">
-            <h2 id="editContractTitle" class="fs-6 text-white active mt-4 mb-3">Nouveau contrat</h2>
+            <h2 id="editContractTitle" class="fs-6 active mt-4 mb-3">Nouveau contrat</h2>
             <form class="row g-3 my-2" method="POST" >
                 <div class="col-md-4">
                 <label for="refContract" class="form-label">n°contrat</label>
@@ -74,7 +74,7 @@
                 </div>
                 <div class="col-12 d-flex my-3">
                     <button id="updateContractBtn" class="btn btn-sm btn-primary bgYellow px-3 d-none" type="submit" name="submitUpdateContract" value="" >Modifier</button>
-                    <button id="addContractBtn" class="btn btn-sm btn-primary bgYellow px-3" type="submit" name="submitAddContract">Ajouter</button>
+                    <button id="addContractBtn" class="btn btn-sm myCustomBtn px-3" type="submit" name="submitAddContract">Ajouter</button>
                     <a data-bs-toggle="collapse" href="#collapseExample" role="button" class="btn btn-sm btn-outline-secondary px-3 ms-3" >Annuler</a>
                     <button id="deleteContractBtn" class="btn btn-sm btn-outline-danger px-3 d-none ms-auto" type="button" name="deleteAddContract" data-bs-toggle="modal" data-bs-target="#deleteContractModal" value="">Supprimer</button>
                 </div>
@@ -82,51 +82,6 @@
                 <input type="text" id="contractIdUpdate" name="contractIdUpdate" value="" hidden >
             </form>
             </div>
-
-<style>
-    .product-list {
-        background-color: #23282c;
-        display: grid;
-        grid-template-columns: 120px 120px 120px 120px 50px 50px 50px 1fr 80px 30px;
-        border-radius: 0.5rem;
-        border: 1px solid #e7e7e72e;
-        padding: 0;
-        margin: 0.5rem 0;
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-        cursor: pointer;
-    }
-
-    .header {
-        display: grid;
-        grid-template-columns: 120px 120px 120px 120px 50px 50px 50px 1fr 80px 30px;
-        border-radius: 0.5rem;
-        padding: 0;
-        margin: 0.5rem 0;
-        font-weight: lighter;
-        color: #dedede;
-        text-transform: uppercase;
-        font-size: 0.8rem;
-    }
-
-    .product-list:hover {
-        background-color: #2c3235;
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-        color: white;
-    }
-    
-    .product-list li, .header li  {
-        list-style: none;
-        padding: 10px;
-        font-weight: normal;
-        color: #d4d4d4;
-    }
-    .name {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-
-    }
-</style>
 
 <?php 
 require '../views/product-nav.php'; ?>
@@ -161,8 +116,8 @@ foreach($params['contracts'] as $contract):
     <?php endif ?>
 <?php endforeach ?>
 <div class="d-flex justify-content-between mt-3">
-    <p><button class="btn btn-outline-light" type="button" data-bs-toggle="modal" data-bs-target="#contractDispoModal">Ajouter du dispo</button></p>
-    <p class=" ms-auto"><a id="toggleFinishContract" data-bs-toggle="collapse" href="#finishContract" role="button" class="btn btn-outline-light"><span class="bi bi-arrow-90deg-down"></span> Contrats épuisé</a></p>
+    <p><button class="btn myCustomBtn-outline" type="button" data-bs-toggle="modal" data-bs-target="#contractDispoModal">Ajouter du dispo</button></p>
+    <p class=" ms-auto"><a id="toggleFinishContract" data-bs-toggle="collapse" href="#finishContract" role="button" class="btn myCustomBtn-outline"><span class="bi bi-arrow-90deg-down"></span> Contrats épuisé</a></p>
 </div>
 <?php
 foreach($params['contracts'] as $contract):

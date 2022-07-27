@@ -13,7 +13,7 @@
 <?php 
 require '../views/product-nav.php'; ?>
 
-<table class="table table-dark table-striped table-hover table-bordered">
+<table class="table table-striped table-bordered">
     <thead>
         <tr >
             <th scope="col" class="text-center">Fournisseur</th>
@@ -65,7 +65,7 @@ require '../views/product-nav.php'; ?>
             </tr>
     <?php endforeach; ?>
     <?php foreach ($params['contractCover'] as $yearKey => $year) : ?>
-        <tr class="table-light border-black <?= array_key_first($params['contractCover']) == $yearKey ? 'firstMonth' : null ?>">
+        <tr class="table-dark border-light <?= array_key_first($params['contractCover']) == $yearKey ? 'firstMonth' : null ?>">
                 <td class="text-center"><?= $yearKey ?></td>
                 <td >Couverture</td>
                 <td class="text-center"><?= $year[1] ?? null ?></td>
@@ -80,7 +80,7 @@ require '../views/product-nav.php'; ?>
 <div class="row">
     <div class="col-2">
         <div class="d-flex justify-content-between">
-            <button type="button" class="btn btn-light" id="btnAddContract">Add cover</button>
+            <button type="button" class="btn myCustomBtn-outline" id="btnAddContract">Add cover</button>
             <button type="button" data-bs-toggle="modal" data-bs-target="#providerModal" class="btn bgYellow d-none" name="submitAddContract" id="submitAddContract">Valider</button>
             <input type="hidden" name="productId" value="<?= $params['product']->id_product_type ?>">
         </div>
@@ -103,17 +103,16 @@ require '../views/product-nav.php'; ?>
                 <span class="input-group-text">T3</span>
                 <input class="form-control" type="number" min=0>
             </div>
-            <div class="input-group me-3">
+            <div class="input-group me-4">
                 <span class="input-group-text">T4</span>
                 <input class="form-control" type="number" min=0>
             </div>
-            <div class="input-group">
-                <span class="input-group-text">Totale</span>
-                <input class="form-control" type="text" disabled value="2022" min=0>
+            <div class="input-group w-50">
+                <input class="form-control text-center" type="text" disabled value="2022" min=0 >
             </div>
         </div>
         <div class="plus">
-            <button class="btn btn-outline-light p-1 px-3" id="addRowCover"> + </button>
+            <button class="btn myCustomBtn-outline p-1 px-3" id="addRowCover"> + </button>
         </div>
     </div>
 </div>

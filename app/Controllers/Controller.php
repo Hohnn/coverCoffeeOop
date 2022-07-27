@@ -20,10 +20,10 @@ class Controller
         $path = str_replace('.', DIRECTORY_SEPARATOR, $path) . '.php';
         $product = new ContractController($this->db);
         $provider = new ProviderController($this->db);
-        require VIEWS . '/nav/asideNav.php';
+        require_once VIEWS . '/nav/asideNav.php';
         require_once VIEWS . 'header.php';
-        require VIEWS . $path;
-        require VIEWS . 'footer.php';
+        require_once VIEWS . $path;
+        require_once VIEWS . 'footer.php';
         if($params){
             $params = extract($params);
         }

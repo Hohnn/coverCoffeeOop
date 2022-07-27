@@ -1,5 +1,16 @@
-/* $yellow: #fca311; */
-/* $yellow: RGB(106, 247, 151); */
+/* $grey: rgb(179, 179, 179);
+$yellow: #fca311;
+$yellow: RGB(106, 247, 151);
+$yellow: #B3C724;
+$dark: RGB(28, 29, 28);
+$dark_grey: rgb(43, 43, 43);
+$semi_dark: #222527;
+$card: hsl(204, 10%, 18%);
+$twitch: #9147FF;
+$youtube: #ff2e2e;
+$hover-black: rgba(0, 0, 0, 0.1); */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,600;0,700;1,600;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap");
 .body {
   display: -webkit-box;
@@ -17,7 +28,7 @@
   min-height: 100vh;
   height: 100%;
   color: white;
-  background-color: RGB(28, 29, 28);
+  background-color: #5e5f5e;
   overflow: hidden;
 }
 
@@ -54,8 +65,8 @@
 }
 
 .body .myForm form button {
-  background-color: #B3C724;
-  border-color: #B3C724;
+  background-color: #35766b;
+  border-color: #35766b;
 }
 
 .body .myModal {
@@ -109,7 +120,7 @@
 .brand-login {
   font-size: 2rem;
   font-weight: bold;
-  color: #B3C724;
+  color: #35766b;
   border: none;
 }
 
