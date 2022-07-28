@@ -2,8 +2,8 @@
     <div class="container-fluid px-1 px-md-2">
         <div class="title d-flex align-items-center fw-bold">
             <h1 class="text-uppercase">Produits</h1>
-            <p><a data-bs-toggle="collapse" href="#collapseExample" role="button" class="btn btn-outline-light">Ajouer un produit</a></p>
-            <form class="searchMember ms-auto me-5" action="" method="POST">
+            <p><a data-bs-toggle="collapse" href="#collapseExample" role="button" class="btn myCustomBtn-outline">Ajouer un produit</a></p>
+            <form class="searchMember ms-5" action="" method="POST">
                 <input type="text" id="searchMember" name="searchMember" placeholder="Recherche">
             </form>
         </div>

@@ -133,7 +133,9 @@ main {
         padding: 1em;
         display: flex;
         align-items: center;
-        position: relative;
+        position: absolute;
+        z-index: 1000;
+        right: 0;
         flex-grow: 1;
         justify-content: end;
 /*         & > * {
@@ -245,6 +247,9 @@ main {
                 
             }
             
+        }
+        .title {
+            margin-bottom: 1rem;
         }
     }
     .actu {
@@ -711,10 +716,9 @@ main {
 }
 
 .myCard {
-    background-color: $card;
+    background-color: $soft_grey;
     border-radius: 1rem;
     padding: 0.6rem;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
 .bgTwitch {
@@ -1025,7 +1029,7 @@ main {
     span {
         font-weight: lighter;
         text-transform: uppercase;
-        color: #e0e0e0;
+        color: $darken;
     }
     h4 {
         color: white;
@@ -1055,7 +1059,6 @@ main {
                 border-radius: 0.3rem;
             }
             .desc {
-                color: white;
                 font-weight: normal;
                 width: 100%;
                 line-height: 0.9;
@@ -1177,6 +1180,7 @@ h2 {
 
 .searchMember {
     margin: 0;
+    margin-bottom: 1rem;
     input {
         width: 150px;
         border-radius: 3em;

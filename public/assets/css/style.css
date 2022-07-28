@@ -178,7 +178,9 @@ main > header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  position: relative;
+  position: absolute;
+  z-index: 1000;
+  right: 0;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -307,6 +309,10 @@ main section h1::first-letter {
 main section h1 span {
   color: white;
   font-weight: normal;
+}
+
+main section .title {
+  margin-bottom: 1rem;
 }
 
 main .actu {
@@ -866,11 +872,9 @@ main .topMembers .scroll .profil .desc span {
 }
 
 .myCard {
-  background-color: #292f32;
+  background-color: #f1f1f0;
   border-radius: 1rem;
   padding: 0.6rem;
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
-          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
 .bgTwitch {
@@ -1275,7 +1279,7 @@ main .topMembers .scroll .profil .desc span {
 .cardWrapper span {
   font-weight: lighter;
   text-transform: uppercase;
-  color: #e0e0e0;
+  color: #4a4b4a;
 }
 
 .cardWrapper h4 {
@@ -1315,7 +1319,6 @@ main .topMembers .scroll .profil .desc span {
 }
 
 .cart-content section .desc {
-  color: white;
   font-weight: normal;
   width: 100%;
   line-height: 0.9;
@@ -1461,6 +1464,7 @@ h2.active::before {
 
 .searchMember {
   margin: 0;
+  margin-bottom: 1rem;
 }
 
 .searchMember input {

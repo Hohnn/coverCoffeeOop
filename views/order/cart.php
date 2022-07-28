@@ -76,14 +76,14 @@
             <div class="p-3">
                 <h4><span>Total</span></h4>
                 <hr>
-                <ul class="m-0 fs-5 fw-light">
-                    <li>Prix : <span class="text-white"> <?= $this->getTotalProvider()->totalPrice ?> €</span></li>
-                    <li>Quantité : <span class="text-lowercase text-white"> <?= $this->getTotalProvider()->quantity ?>
+                <ul class="m-0 fs-5 fw-normal">
+                    <li>Prix : <span> <?= $this->getTotalProvider()->totalPrice ?> €</span></li>
+                    <li>Quantité : <span class="text-lowercase"> <?= $this->getTotalProvider()->quantity ?>
                         <?= $this->getTotalProvider()->quantity > 1 ? 'sacs' : 'sac' ?></span></li>
                 </ul>
                 <form class="d-flex" target="_blank" method="POST"
                     onsubmit="javascript: setTimeout(function(){window.location.href = window.location.href;}, 2000);return true;">
-                    <button type="submit" class="btn btn-sm bgYellow mt-3 w-100" name="validation">Valider la commande</button>
+                    <button type="submit" class="btn myCustomBtn mt-3 w-100" name="validation">Valider la commande</button>
                 </form>
             </div>
         </div>
