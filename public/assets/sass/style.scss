@@ -622,7 +622,7 @@ main {
 .bgYellow {
     background-color: $yellow !important;
     border-color: $yellow;
-    color: black !important;
+    color: white !important;
     &:hover {
         border-color: $yellow;
         box-shadow: 0 0px 5px 1px $yellow;
@@ -716,9 +716,13 @@ main {
 }
 
 .myCard {
-    background-color: $soft_grey;
-    border-radius: 1rem;
     padding: 0.6rem;
+    border: $soft_bleu solid 1px;
+    background-color: $white_bleu;
+    border-radius: 5px;
+    &:hover {
+        box-shadow:  1px 2px 2px  #0f0f0f36;
+    }
 }
 
 .bgTwitch {
@@ -804,34 +808,36 @@ main {
     ul {
         display: flex;
         flex-wrap: wrap;
-        gap: 5px;
+        gap: 10px;
         list-style: none;
         padding: 0;
         margin: 0;
         li {
             flex-grow: 1;
             width: 250px;
-            border: rgba(0, 0, 0, 0.329) solid 1px;
-            /* background-color: black; */
-            box-shadow: #0f0f0f44 0px 0px 0px 1px, #0f0f0f36 0px 2px 4px;
+            border: $soft_bleu solid 1px;
+            background-color: $white_bleu;
             border-radius: 3px;
             &:hover {
-                background-color: rgba(0, 0, 0, 0.151);
+                /* background-color: $soft_grey; */
+                box-shadow:  1px 2px 2px  #0f0f0f36;
             }
             &::first-letter {
                 text-transform: uppercase;
             }
             font-weight: lighter;
-            margin: 0 0.5vw;
             a {
                 margin: 0;
-                font-size: 0.9rem;
+                font-size: 1.2rem;
                 /* border-bottom: 1px solid $grey; */
                 /* border-radius: 2rem; */
                 padding: 0.5rem;
                 width: 100%;
-                text-transform: uppercase;
-                display: inline-block;
+                /* text-transform: uppercase; */
+                display: block;
+                white-space: nowrap;
+                overflow-x: hidden;
+                text-overflow: ellipsis;
             }
         }
     }
@@ -955,27 +961,31 @@ main {
     position: absolute;
     right: 0;
     top: 5rem;
-    background-color: white;
+    background-color: $soft_grey;
+    ;
     border-radius: 0.5rem;
     box-shadow: 0 15px 20px rgba(0, 0, 0, 0.192);
     z-index: 100;
-    &>*{
-        padding:  0.5rem 1.3rem 1.3rem 1.3rem;
-    }
+    
     .title {
-        padding: 1rem 1.3rem;
+        padding: 0.8rem 1.3rem;
     }
     .card-content {
-        border-top: 2px solid #f7f8fd;
+        border-top: 2px solid $soft_bleu;
         min-width: 250px;
         a {
             text-decoration: none;
             section {
+                padding:  0.5rem 1.3rem 0.5rem 1.3rem;
                 display: flex;
                 align-items: flex-start;
                 gap: 1rem;
-                padding: 0.3rem 0;
                 justify-content: space-between;
+                border-bottom: 2px solid $white_bleu;
+                transition: all 0.25s;
+                &:hover {
+                    background-color: $white_bleu;
+                }
                 img {
                     width: 50px;
                     height: 50px;
@@ -1004,6 +1014,7 @@ main {
             color: white;
             border: none;
             padding: 0.5rem 1rem;
+            margin: 0 1.2rem;
             border-radius: 0.4rem;
             font-size: 1rem;
             font-weight: bold;
@@ -1025,6 +1036,9 @@ main {
     }
     .totalContainer {
         width: 300px;
+        li {
+            list-style: none;
+        }
     }
     span {
         font-weight: lighter;
@@ -1045,7 +1059,7 @@ main {
 }
 
 .cart-content {
-    margin-top: 0.5rem;
+    margin-bottom: 1rem;
         section {
             display: flex;
             align-items: flex-start;

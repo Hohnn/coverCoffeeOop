@@ -28,8 +28,8 @@ require '../views/product-nav.php'; ?>
     <tbody>
     <?php foreach ($params['cover'] as $yearKey => $year) : $i = 0 ?>
         <?php foreach ($year['orders'] as $provider) : $i++ ?>
-            <tr class="fw-light <?=  $i == 1 && ($params['cover'][$yearKey - 1]['year'] ?? $year['year']) != $year['year'] ? 'firstMonth' : '' ?>">
-                <td ><?= $provider['provider'] ?></td>
+            <tr class=" <?=  $i == 1 && ($params['cover'][$yearKey - 1]['year'] ?? $year['year']) != $year['year'] ? 'firstMonth' : '' ?>">
+                <td class="text-center"><?= $provider['provider'] ?></td>
                 <td class="text-center"><?= $year['year'] ?></td>
                 <td class="text-center"><?= $provider['orders'][1]['total'] ?? null ?></td>
                 <td class="text-center"><?= $provider['orders'][2]['total'] ?? null ?></td>
@@ -65,9 +65,9 @@ require '../views/product-nav.php'; ?>
             </tr>
     <?php endforeach; ?>
     <?php foreach ($params['contractCover'] as $yearKey => $year) : ?>
-        <tr class="table-dark border-light <?= array_key_first($params['contractCover']) == $yearKey ? 'firstMonth' : null ?>">
+        <tr class=" fw-bold table-dark border-light <?= array_key_first($params['contractCover']) == $yearKey ? 'firstMonth' : null ?>">
+                <td class="text-center">Couverture</td>
                 <td class="text-center"><?= $yearKey ?></td>
-                <td >Couverture</td>
                 <td class="text-center"><?= $year[1] ?? null ?></td>
                 <td class="text-center"><?= $year[2] ?? null ?></td>
                 <td class="text-center"><?= $year[3] ?? null ?></td>
@@ -80,39 +80,41 @@ require '../views/product-nav.php'; ?>
 <div class="row">
     <div class="col-2">
         <div class="d-flex justify-content-between">
-            <button type="button" class="btn myCustomBtn-outline" id="btnAddContract">Add cover</button>
+            <button type="button" class="btn myCustomBtn-outline" id="btnAddContract">Ajout de couverture</button>
             <button type="button" data-bs-toggle="modal" data-bs-target="#providerModal" class="btn bgYellow d-none" name="submitAddContract" id="submitAddContract">Valider</button>
             <input type="hidden" name="productId" value="<?= $params['product']->id_product_type ?>">
         </div>
     </div>
-    <div class="col-10">
+    <div class="col-10 d-none" id="colCover">
         <div class="d-flex  mb-2" id="rowCover">
+            
             <div class="input-group me-4">
+                <button class="btn myCustomBtn-outline p-1 px-2" data-minus > - </button>
                 <span class="input-group-text">Année</span>
-                <input class="form-control" type="text" disabled value="2022" min=0>
+                <input class="form-control" type="text" disabled value="2022" min=0 data-year>
             </div>
             <div class="input-group me-3">
                 <span class="input-group-text">T1</span>
-                <input class="form-control" type="number" min=0>
+                <input class="form-control text-center" type="number" min=0 placeholder="0">
             </div>
             <div class="input-group me-3">
                 <span class="input-group-text">T2</span>
-                <input class="form-control" type="number" min=0>
+                <input class="form-control text-center" type="number" min=0 placeholder="0">
             </div>
             <div class="input-group me-3">
                 <span class="input-group-text">T3</span>
-                <input class="form-control" type="number" min=0>
+                <input class="form-control text-center" type="number" min=0 placeholder="0">
             </div>
             <div class="input-group me-4">
                 <span class="input-group-text">T4</span>
-                <input class="form-control" type="number" min=0>
+                <input class="form-control text-center" type="number" min=0 placeholder="0">
             </div>
             <div class="input-group w-50">
-                <input class="form-control text-center" type="text" disabled value="2022" min=0 >
+                <input class="form-control text-center" type="text" disabled placeholder="0" >
             </div>
         </div>
         <div class="plus">
-            <button class="btn myCustomBtn-outline p-1 px-3" id="addRowCover"> + </button>
+            <button class="btn myCustomBtn-outline p-1 px-2 me-2" id="addRowCover"> + </button>
         </div>
     </div>
 </div>

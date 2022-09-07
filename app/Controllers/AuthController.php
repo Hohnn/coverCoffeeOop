@@ -20,7 +20,8 @@ class AuthController extends Controller
             if (password_verify($password, $user->USER_PASSWORD)) {
                 $_SESSION['user'] = $user;
                 $_SESSION['id'] = $user->USER_ID;  
-                $this->view('home/index');
+                setcookie('user', json_encode($user));
+                $this->view('home/home');
             } else {
                 $errorPass = 'Ce mot de passe n’est pas valide.';
                 $this->viewEmpty('auth/login' , compact('errorPass'));

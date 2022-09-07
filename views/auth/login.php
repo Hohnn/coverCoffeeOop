@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="submit" name="submitLogin" class="btn btn-primary bgYellow">Connection</button>
+                <button type="submit" name="submitLogin" class="btn btn-primary">Connection</button>
                 <a href="../views/login.php?mdp=forget" class="text-white">Mot de passe oublié ?</a>
             </div>
         </form>

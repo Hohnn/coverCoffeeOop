@@ -9,7 +9,7 @@
         </div>
 
         <div class="collapse" id="collapseExample">
-            <h2 class="fs-6 text-white active mt-4 mb-3">Nouveau produit</h2>
+            <h2 class="fs-6 active mt-4 mb-3">Nouveau produit</h2>
             <form class="row g-3 my-2" method="POST">
                 <div class="col-md-4">
                     <label for="nameProduct" class="form-label">Nom du produit</label>
@@ -22,8 +22,8 @@
                     <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="col-12 d-flex my-3">
+                    <a data-bs-toggle="collapse" href="#collapseExample" role="button" class="btn btn-sm btn-outline-secondary px-3 me-3" >Annuler</a>
                     <button class="btn btn-sm btn-primary bgYellow px-3" type="submit" name="submitAddProduct">Ajouter</button>
-                    <a data-bs-toggle="collapse" href="#collapseExample" role="button" class="btn btn-sm btn-outline-secondary px-3 ms-3" >Annuler</a>
                 </div>
             </form>
         </div>

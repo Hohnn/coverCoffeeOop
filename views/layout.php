@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<?= SCRIPT . 'assets/css' . DIRECTORY_SEPARATOR . 'style.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPT . 'assets/css' . DIRECTORY_SEPARATOR . ($_GET['url'] == '' ? 'home' : $_GET['url']) . '.css' ?>">
-    <title>Page des produits</title>
+    <title>COVER coffee</title>
 </head>
 <body>
     <div class="container-fluid">

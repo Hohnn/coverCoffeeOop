@@ -1,10 +1,23 @@
+/* $grey: rgb(179, 179, 179);
+$yellow: #fca311;
+$yellow: RGB(106, 247, 151);
+$yellow: #B3C724;
+$dark: RGB(28, 29, 28);
+$dark_grey: rgb(43, 43, 43);
+$semi_dark: #222527;
+$card: hsl(204, 10%, 18%);
+$twitch: #9147FF;
+$youtube: #ff2e2e;
+$hover-black: rgba(0, 0, 0, 0.1); */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,600;0,700;1,600;1,700&display=swap");
 #exchangeCurrency h3 {
   font-size: 1.1rem;
   margin-bottom: 0.5em;
 }
 
 #exchangeCurrency span {
-  color: white;
+  /* color: white; */
   text-transform: uppercase;
 }
 
@@ -27,4 +40,75 @@
 
 #exchangeCurrency .desc span {
   font-weight: lighter;
+}
+
+#exchangeData, #arabicaData, #robustaData {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(8rem, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+}
+
+#exchangeData li, #arabicaData li, #robustaData li {
+  background-color: #fefffe;
+  border: 1px solid #f1f1f0;
+  margin: 0.3em;
+  padding: 0.3em 0.5em;
+  border-radius: 0.5em;
+}
+
+#exchangeData li div, #arabicaData li div, #robustaData li div {
+  color: #5e5f5e;
+}
+
+#exchangeData li span, #arabicaData li span, #robustaData li span {
+  font-size: 1.2rem;
+}
+
+.bgSoftBleu {
+  background-color: #fafcfa;
+}
+
+.load {
+  cursor: pointer;
+  font-size: 1.5rem;
+  -webkit-transition: -webkit-transform 0.25s;
+  transition: -webkit-transform 0.25s;
+  transition: transform 0.25s;
+  transition: transform 0.25s, -webkit-transform 0.25s;
+}
+
+.load:hover {
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+}
+
+.loadingData {
+  -webkit-animation: loading linear 1s forwards;
+          animation: loading linear 1s forwards;
+}
+
+@-webkit-keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }

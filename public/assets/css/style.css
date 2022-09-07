@@ -13,7 +13,7 @@ $hover-black: rgba(0, 0, 0, 0.1); */
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,600;0,700;1,600;1,700&display=swap");
 body {
-  color: #5e5f5e;
+  color: #1d1f1d;
   font-family: "Nunito", sans-serif;
   font-weight: 500;
   overflow-x: hidden;
@@ -768,7 +768,7 @@ main .topMembers .scroll .profil .desc span {
 .bgYellow {
   background-color: #35766b !important;
   border-color: #35766b;
-  color: black !important;
+  color: white !important;
 }
 
 .bgYellow:hover {
@@ -872,9 +872,15 @@ main .topMembers .scroll .profil .desc span {
 }
 
 .myCard {
-  background-color: #f1f1f0;
-  border-radius: 1rem;
   padding: 0.6rem;
+  border: #c7d8d8 solid 1px;
+  background-color: #fafcfa;
+  border-radius: 5px;
+}
+
+.myCard:hover {
+  -webkit-box-shadow: 1px 2px 2px  #0f0f0f36;
+          box-shadow: 1px 2px 2px  #0f0f0f36;
 }
 
 .bgTwitch {
@@ -977,7 +983,7 @@ main .topMembers .scroll .profil .desc span {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  gap: 5px;
+  gap: 10px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -988,17 +994,16 @@ main .topMembers .scroll .profil .desc span {
       -ms-flex-positive: 1;
           flex-grow: 1;
   width: 250px;
-  border: rgba(0, 0, 0, 0.329) solid 1px;
-  /* background-color: black; */
-  -webkit-box-shadow: #0f0f0f44 0px 0px 0px 1px, #0f0f0f36 0px 2px 4px;
-          box-shadow: #0f0f0f44 0px 0px 0px 1px, #0f0f0f36 0px 2px 4px;
+  border: #c7d8d8 solid 1px;
+  background-color: #fafcfa;
   border-radius: 3px;
   font-weight: lighter;
-  margin: 0 0.5vw;
 }
 
 .productList ul li:hover {
-  background-color: rgba(0, 0, 0, 0.151);
+  /* background-color: $soft_grey; */
+  -webkit-box-shadow: 1px 2px 2px  #0f0f0f36;
+          box-shadow: 1px 2px 2px  #0f0f0f36;
 }
 
 .productList ul li::first-letter {
@@ -1007,13 +1012,16 @@ main .topMembers .scroll .profil .desc span {
 
 .productList ul li a {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   /* border-bottom: 1px solid $grey; */
   /* border-radius: 2rem; */
   padding: 0.5rem;
   width: 100%;
-  text-transform: uppercase;
-  display: inline-block;
+  /* text-transform: uppercase; */
+  display: block;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 .pageNav2 ul {
@@ -1178,23 +1186,19 @@ main .topMembers .scroll .profil .desc span {
   position: absolute;
   right: 0;
   top: 5rem;
-  background-color: white;
+  background-color: #f1f1f0;
   border-radius: 0.5rem;
   -webkit-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.192);
           box-shadow: 0 15px 20px rgba(0, 0, 0, 0.192);
   z-index: 100;
 }
 
-.cart-card > * {
-  padding: 0.5rem 1.3rem 1.3rem 1.3rem;
-}
-
 .cart-card .title {
-  padding: 1rem 1.3rem;
+  padding: 0.8rem 1.3rem;
 }
 
 .cart-card .card-content {
-  border-top: 2px solid #f7f8fd;
+  border-top: 2px solid #c7d8d8;
   min-width: 250px;
 }
 
@@ -1203,6 +1207,7 @@ main .topMembers .scroll .profil .desc span {
 }
 
 .cart-card .card-content a section {
+  padding: 0.5rem 1.3rem 0.5rem 1.3rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1210,10 +1215,16 @@ main .topMembers .scroll .profil .desc span {
       -ms-flex-align: start;
           align-items: flex-start;
   gap: 1rem;
-  padding: 0.3rem 0;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  border-bottom: 2px solid #fafcfa;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+
+.cart-card .card-content a section:hover {
+  background-color: #fafcfa;
 }
 
 .cart-card .card-content a section img {
@@ -1245,6 +1256,7 @@ main .topMembers .scroll .profil .desc span {
   color: white;
   border: none;
   padding: 0.5rem 1rem;
+  margin: 0 1.2rem;
   border-radius: 0.4rem;
   font-size: 1rem;
   font-weight: bold;
@@ -1276,6 +1288,10 @@ main .topMembers .scroll .profil .desc span {
   width: 300px;
 }
 
+.cardWrapper .totalContainer li {
+  list-style: none;
+}
+
 .cardWrapper span {
   font-weight: lighter;
   text-transform: uppercase;
@@ -1293,7 +1309,7 @@ main .topMembers .scroll .profil .desc span {
 }
 
 .cart-content {
-  margin-top: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .cart-content section {

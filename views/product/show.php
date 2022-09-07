@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-4">
                 <label for="providerSelect" class="form-label">Fournisseur</label>
-                <select name="providerId" class="form-select" id="providerSelect">
+                <select name="providerId" class="form-select w-auto" id="providerSelect">
 
                 <?php foreach($params['providers'] as $key => $provider) : ?>
                     <option value="<?= $provider->id_provider ?>"><?= $provider->name_provider ?></option>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-md-2">
                 <label for="quantityContract" class="form-label">Quantité</label>
-                <input type="number" min=0 id="quantityContract" name="quantity" value="<?= $_POST['quantity'] ?? '' ?>" class="form-control" required>
+                <input type="number" min=0 id="quantityContract" name="quantity" value="<?= $_POST['quantity'] ?? '' ?>" class="form-control w-auto" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -64,7 +64,7 @@
                 </div>
                 </div>
                 <div class="col-md-2">
-                <label for="price" class="form-label">Prix</label>
+                <label for="price" class="form-label  w-auto">Prix</label>
                 <div class="input-group mb-3">
                     <input type="number" min=0 step="0.01" id="price" name="price" class="form-control" value="<?= $_POST['price'] ?? '' ?>" required>
                     <div class="input-group-append">
@@ -73,9 +73,9 @@
                 </div>
                 </div>
                 <div class="col-12 d-flex my-3">
+                    <a data-bs-toggle="collapse" href="#collapseExample" role="button" class="btn btn-sm btn-outline-secondary px-3 me-3" >Annuler</a>
                     <button id="updateContractBtn" class="btn btn-sm btn-primary bgYellow px-3 d-none" type="submit" name="submitUpdateContract" value="" >Modifier</button>
                     <button id="addContractBtn" class="btn btn-sm myCustomBtn px-3" type="submit" name="submitAddContract">Ajouter</button>
-                    <a data-bs-toggle="collapse" href="#collapseExample" role="button" class="btn btn-sm btn-outline-secondary px-3 ms-3" >Annuler</a>
                     <button id="deleteContractBtn" class="btn btn-sm btn-outline-danger px-3 d-none ms-auto" type="button" name="deleteAddContract" data-bs-toggle="modal" data-bs-target="#deleteContractModal" value="">Supprimer</button>
                 </div>
                 <input type="text" name="productId" value="<?= $params['product']->id_product_type ?>" hidden >

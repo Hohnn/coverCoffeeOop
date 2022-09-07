@@ -2,92 +2,99 @@
     <div class="container-fluid ">
         <h1 class="text-uppercase">Commande</span></h1>
         <div class="cardWrapper mt-3">
-        <div class="productContainer">
-            <div class="">
-                <?php if (isset($_SESSION['order']) && !empty($_SESSION['order'])) { 
+            <div class="productContainer">
+                <div class="">
+                    <?php if (isset($_SESSION['order']) && !empty($_SESSION['order'])) { 
 
             foreach ($this->getUniqueProvider() as $keyP => $value) { ?>
-           
-                <div class=" mt-4">
-                    <h2 class="text-uppercase fs-4 d-flex w-100"><?= $value->provider ?> <span class="ms-auto text-lowercase fs-5">Qté: <?= $value->quantity ?> </span> <span class="ms-3 text-lowercase fs-5">Total: <?= $value->totalPrice ?> €</span></h2>
-                    <?php
+
+                    <div class=" mt-4">
+                        <h2 class="text-uppercase fs-4 d-flex w-100"><?= $value->provider ?> <span
+                                class="ms-auto text-lowercase fs-5">Qté: <?= $value->quantity ?> </span> <span
+                                class="ms-3 text-lowercase fs-5">Total: <?= $value->totalPrice ?> €</span></h2>
+                        <?php
                         foreach ($value->orders as $key => $value) { ?>
-                        
-                    <div class="cart-content myCard p-3">
-                        <a href="<?= BASEURL ?>product/<?= $value['contractInfo']->id_product_type ?>">
-                            <section class="p-0">
-                                <div class="desc">
-                                    <div class="desc-title">
-                                        <h3 class="nameContract"> <?= $value['contractInfo']->name_contract ?></h3>
-                                        <div class="price">Prix : <span><?= $value['contractInfo']->price_contract ?> €</span></div>
-                                    </div>
-                                    <div class="provider flex-wrap">
-                                        <p class="nameProvider"> Fournisseur :
-                                            <span><?= $value['contractInfo']->name_provider ?></span></p>
-                                        <p class="refContract"> Contrat :
-                                            <span><?= $value['contractInfo']->reference_contract ?></span></p>
-                                            <p class="refProduct">Produit :
-                                            <span><?= $value['contractInfo']->name_product_type ?></span></p>
-                                        <p class="refProduct"> Référence :
-                                            <span><?= $value['contractInfo']->reference_product_type ?></span></p>
-                                    </div>
-                                    <footer>
-                                        <div class="selectCart">
-                                            Quantité :
-                                            <form class="numberOrderSelect" method="post">
-                                                <input type="hidden" name="itemNumber" value="<?= $value['sessionKey'] ?>">
-                                                <?php if (isset($value['type']) && $value['type'] == 'dispo') { ?>
-                                                <input class="form-control" max="999" type="number"
-                                                    name="updateOrderQuantity" min="1"
-                                                    value="<?= $value['quantity'] ?>">
-                                                <?php } else { ?>
-                                                <select name="updateOrderQuantity" class="form-select">
-                                                    <?php for ($i=1; $i <= $value['solde']  ; $i++) { ?>
-                                                    <option value="<?= $i ?>"
-                                                        <?= $value['quantity'] == $i ? 'selected' : '' ?>><?= $i ?>
-                                                    </option>
-                                                    <?php } ?>
-                                                </select>
-                                                <?php } ?>
+
+                        <div class="cart-content myCard p-3">
+                            <a href="<?= BASEURL ?>product/<?= $value['contractInfo']->id_product_type ?>">
+                                <section class="p-0">
+                                    <div class="desc">
+                                        <div class="desc-title">
+                                            <h3 class="nameContract"> <?= $value['contractInfo']->name_contract ?></h3>
+                                            <form action="" method="post" class="deleteForm ms-auto">
+                                                <button type="submit" name="submitDeleteOrder"
+                                                    class="text-secondary fw-light">Supprimer</button>
+                                                <input type="hidden" name="key" value="<?= $key ?>">
                                             </form>
                                         </div>
-                                        <form action="" method="post" class="deleteForm ">
-                                            <button type="submit" name="submitDeleteOrder"
-                                                class="text-light fw-light">Supprimer</button>
-                                            <input type="hidden" name="key" value="<?= $key ?>">
-                                        </form>
-                                    </footer>
 
-                                </div>
+                                        <footer class="d-flex justify-content-between align-items-center">
+                                            <div class="provider flex-wrap align-items-center">
+                                                <div class="nameProvider"> Fournisseur :
+                                                    <span><?= $value['contractInfo']->name_provider ?></span></div>
+                                                <div class="refContract"> Contrat :
+                                                    <span><?= $value['contractInfo']->reference_contract ?></span></div>
+                                                <div class="refProduct">Produit :
+                                                    <span><?= $value['contractInfo']->name_product_type ?></span></div>
+                                                <div class="refProduct"> Référence :
+                                                    <span><?= $value['contractInfo']->reference_product_type ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="selectCart">
+                                                Quantité :
+                                                <form class="numberOrderSelect" method="post">
+                                                    <input type="hidden" name="itemNumber"
+                                                        value="<?= $value['sessionKey'] ?>">
+                                                    <?php if (isset($value['type']) && $value['type'] == 'dispo') { ?>
+                                                    <input class="form-control" max="999" type="number"
+                                                        name="updateOrderQuantity" min="1"
+                                                        value="<?= $value['quantity'] ?>">
+                                                    <?php } else { ?>
+                                                    <select name="updateOrderQuantity" class="form-select">
+                                                        <?php for ($i=1; $i <= $value['solde']  ; $i++) { ?>
+                                                        <option value="<?= $i ?>"
+                                                            <?= $value['quantity'] == $i ? 'selected' : '' ?>><?= $i ?>
+                                                        </option>
+                                                        <?php } ?>
+                                                    </select>
+                                                    <?php } ?>
+                                                </form>
+                                            </div>
+                                            <div class="price">Prix :
+                                                <span><?= $value['contractInfo']->price_contract ?> €</span></div>
+                                        </footer>
 
-                            </section>
-                        </a>
+                                    </div>
+
+                                </section>
+                            </a>
+                        </div>
                     </div>
-                    <?php } } } else {
+
+                        <?php } } } else {
   echo '<div class="myCard">Aucune commande en cours</div>';
 } ?>
 
 
                 </div>
             </div>
-        </div>
-        </div>
-        <div class="totalContainer">
-            <div class="p-3">
-                <h4><span>Total</span></h4>
-                <hr>
-                <ul class="m-0 fs-5 fw-normal">
-                    <li>Prix : <span> <?= $this->getTotalProvider()->totalPrice ?> €</span></li>
-                    <li>Quantité : <span class="text-lowercase"> <?= $this->getTotalProvider()->quantity ?>
-                        <?= $this->getTotalProvider()->quantity > 1 ? 'sacs' : 'sac' ?></span></li>
-                </ul>
-                <form class="d-flex" target="_blank" method="POST"
-                    onsubmit="javascript: setTimeout(function(){window.location.href = window.location.href;}, 2000);return true;">
-                    <button type="submit" class="btn myCustomBtn mt-3 w-100" name="validation">Valider la commande</button>
-                </form>
+            <div class="totalContainer">
+                <div class="p-3">
+                    <h4><span>Total</span></h4>
+                    <hr>
+                    <ul class="m-0 fs-5 fw-normal ">
+                        <li >Prix : <span> <?= $this->getTotalProvider()->totalPrice ?> €</span></li>
+                        <li >Quantité : <span class="text-lowercase"> <?= $this->getTotalProvider()->quantity ?>
+                                <?= $this->getTotalProvider()->quantity > 1 ? 'sacs' : 'sac' ?></span></li>
+                    </ul>
+                    <form class="d-flex" target="_blank" method="POST"
+                        onsubmit="javascript: setTimeout(function(){window.location.href = window.location.href;}, 2000);return true;">
+                        <button type="submit" class="btn myCustomBtn mt-3 w-100" name="validation">Valider la
+                            commande</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 </section>
 </main>
 </div>

@@ -54,10 +54,11 @@ if(isset($_SESSION['contract']) && !empty($_SESSION['contract'])) {
             <div class="card-content">
                 <?php
 if ( !isset($_SESSION['order']) || empty($_SESSION['order'])) { ?>
-                <section>Vide</section>
+                <section class="mx-3">Vide</section>
                 <?php } elseif (isset($_SESSION['order'])){
             foreach ($_SESSION['order'] as $key => $value) { 
             $contractInfo = $product->getContractById($value['contractId']); ?>
+            <div>
                 <a href="<?= BASEURL ?>product/<?= $contractInfo->id_product_type ?>">
                     <section>
                         <div class="desc">
@@ -65,13 +66,16 @@ if ( !isset($_SESSION['order']) || empty($_SESSION['order'])) { ?>
                             <div class="price"><span><?= $value['quantity'] ?></span> Sacs</div>
                         </div>
                         <form action="<?= BASEURL ?>order/delete/<?= $key ?>" method="post" class="deleteForm">
-                            <button type="submit" name="submitDeleteOrder"><i class="bi bi-x-circle"></i></button>
+                            <button type="submit" name="submitDeleteOrder"class="text-secondary"><i class="bi bi-x-circle"></i></button>
                             <input type="hidden" name="key" value="<?= $key ?>">
                         </form>
                     </section>
                 </a>
+                </div>
                 <?php } } ?>
-                <a href="/order/cart" type="button" class="cartBtn text-center">Voir les commandes</a>
+                <div class="m-2">
+                    <a href="/order/cart" type="button" class="btn myCustomBtn w-100 text-center">Voir les commandes</a>
+                </div>
             </div>
         </div>
 
